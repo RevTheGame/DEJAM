@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Sprites/wood.jpg" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/character_femaleAdventurer_sheetHD.png" type="Texture" id=2]
 [ext_resource path="res://Assets/icon.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/toaster.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Scenes/Toaster.gd" type="Script" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -60,13 +62,25 @@ height = 90.0
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 28, 28 )
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 57, 31 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.091, 0.91, 0.15925, 1 )
+
 [node name="Main" type="Node"]
+__meta__ = {
+"_edit_horizontal_guides_": [ -66.0 ]
+}
 
 [node name="wood" type="Sprite" parent="."]
 position = Vector2( 808, 398 )
 texture = ExtResource( 1 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"Player",
+]]
+position = Vector2( 110, 340 )
 script = ExtResource( 4 )
 moveSpeed = 500
 
@@ -88,12 +102,175 @@ frame = 7
 position = Vector2( 0, 29 )
 shape = SubResource( 10 )
 
-[node name="Weapon" type="StaticBody2D" parent="Player"]
-visible = false
-position = Vector2( 131, 50 )
+[node name="RightHand" type="StaticBody2D" parent="Player"]
+position = Vector2( 96, 82 )
+collision_layer = 2
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="Player/Weapon"]
+[node name="Sprite" type="Sprite" parent="Player/RightHand"]
 texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightHand"]
 shape = SubResource( 11 )
+
+[node name="LeftHand" type="StaticBody2D" parent="Player"]
+position = Vector2( -96, 82 )
+collision_layer = 2
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player/LeftHand"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/LeftHand"]
+shape = SubResource( 11 )
+
+[node name="Toaster" type="KinematicBody2D" parent="."]
+position = Vector2( 369, 162 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+moveSpeed = 100
+
+[node name="Sprite" type="Sprite" parent="Toaster"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toaster"]
+position = Vector2( -1, 12 )
+shape = SubResource( 12 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Toaster"]
+margin_left = -51.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -48.0
+custom_styles/fg = SubResource( 13 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toaster2" type="KinematicBody2D" parent="."]
+position = Vector2( 290, 12 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+moveSpeed = 100
+
+[node name="Sprite" type="Sprite" parent="Toaster2"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toaster2"]
+position = Vector2( -1, 12 )
+shape = SubResource( 12 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Toaster2"]
+margin_left = -51.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -48.0
+custom_styles/fg = SubResource( 13 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toaster3" type="KinematicBody2D" parent="."]
+position = Vector2( -254, -41 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+moveSpeed = 100
+
+[node name="Sprite" type="Sprite" parent="Toaster3"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toaster3"]
+position = Vector2( -1, 12 )
+shape = SubResource( 12 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Toaster3"]
+margin_left = -51.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -48.0
+custom_styles/fg = SubResource( 13 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toaster4" type="KinematicBody2D" parent="."]
+position = Vector2( 71, -139 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+moveSpeed = 100
+
+[node name="Sprite" type="Sprite" parent="Toaster4"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toaster4"]
+position = Vector2( -1, 12 )
+shape = SubResource( 12 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Toaster4"]
+margin_left = -51.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -48.0
+custom_styles/fg = SubResource( 13 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toaster5" type="KinematicBody2D" parent="."]
+position = Vector2( 551, -94 )
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+moveSpeed = 100
+
+[node name="Sprite" type="Sprite" parent="Toaster5"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toaster5"]
+position = Vector2( -1, 12 )
+shape = SubResource( 12 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Toaster5"]
+margin_left = -51.0
+margin_top = -62.0
+margin_right = 49.0
+margin_bottom = -48.0
+custom_styles/fg = SubResource( 13 )
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

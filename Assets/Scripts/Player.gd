@@ -3,6 +3,8 @@ extends KinematicBody2D
 export (int) var moveSpeed = 100
 var GRAVITY = 9.8
 var velocity = Vector2()
+var xHandPos = 96
+var yHandPos = 82
 
 
 
@@ -18,7 +20,18 @@ func play_anim(var animToPlay):
 		
 func get_input():
 	velocity = Vector2()
-	if Input
+	if Input.is_action_pressed("right_hand"):
+		$RightHand.show()
+		$RightHand.set_position(Vector2(xHandPos,yHandPos))
+	else:
+		$RightHand.hide()
+		$RightHand.set_position(Vector2.ZERO)
+	if Input.is_action_pressed("left_hand"):
+		$LeftHand.show()
+		$LeftHand.set_position(Vector2(-xHandPos,yHandPos))
+	else:
+		$LeftHand.hide()
+		$LeftHand.set_position(Vector2.ZERO)
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
 		play_anim("default")
