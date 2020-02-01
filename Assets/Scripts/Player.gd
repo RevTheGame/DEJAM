@@ -54,3 +54,7 @@ func get_input():
 func _process(delta):
 	get_input()
 	move_and_slide(velocity)
+	
+
+
+	
