@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Sprites/wood.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/character_femaleAdventurer_sheetHD.png" type="Texture" id=2]
+[ext_resource path="res://Assets/icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 192, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 384, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 576, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 768, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 960, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1152, 1024, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1344, 1024, 192, 256 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 51.0
+height = 90.0
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 28, 28 )
+
+[node name="Main" type="Node"]
+
+[node name="wood" type="Sprite" parent="."]
+position = Vector2( 808, 398 )
+texture = ExtResource( 1 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
+moveSpeed = 500
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 1, 0 )
+current = true
+smoothing_enabled = true
+drag_margin_left = 0.38
+drag_margin_top = 0.57
+drag_margin_right = 0.69
+drag_margin_bottom = 0.69
+editor_draw_drag_margin = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+frames = SubResource( 9 )
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, 29 )
+shape = SubResource( 10 )
+
+[node name="Weapon" type="StaticBody2D" parent="Player"]
+visible = false
+position = Vector2( 131, 50 )
+
+[node name="Sprite" type="Sprite" parent="Player/Weapon"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon"]
+shape = SubResource( 11 )
