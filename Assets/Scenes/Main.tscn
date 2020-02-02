@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/Sprites/wood.jpg" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/character_femaleAdventurer_sheetHD.png" type="Texture" id=2]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/Background/bg_1.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scenes/Spawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sprites/Background/bg_1_mask.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Scenes/Toaster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sounds/trash.wav" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Scripts/Trash.gd" type="Script" id=7]
@@ -11,62 +11,7 @@
 [ext_resource path="res://Assets/Sprites/trash_animation/trash 2.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/trash_animation/trash 1.png" type="Texture" id=10]
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 384, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 576, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 768, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 960, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1152, 1024, 192, 256 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 1344, 1024, 192, 256 )
-
-[sub_resource type="SpriteFrames" id=9]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "default",
-"speed": 12.0
-} ]
-
-[sub_resource type="CapsuleShape2D" id=10]
-radius = 51.0
-height = 90.0
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 28, 28 )
-
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ],
 "loop": true,
@@ -74,10 +19,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11.038, 11.8647 )
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 29.9343, 23.632 )
 
 [node name="Main" type="Node"]
@@ -85,77 +30,15 @@ __meta__ = {
 "_edit_horizontal_guides_": [ -66.0 ]
 }
 
-[node name="wood" type="Sprite" parent="."]
-position = Vector2( 808, 398 )
+[node name="bg_1" type="Sprite" parent="."]
+position = Vector2( 591, -387 )
 texture = ExtResource( 1 )
 
-[node name="Player" type="KinematicBody2D" parent="." groups=[
-"Player",
-]]
-position = Vector2( 110, 340 )
-collision_layer = 1025
-script = ExtResource( 4 )
-moveSpeed = 500
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 1, 0 )
-current = true
-smoothing_enabled = true
-drag_margin_left = 0.38
-drag_margin_top = 0.57
-drag_margin_right = 0.69
-drag_margin_bottom = 0.69
-editor_draw_drag_margin = true
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-frames = SubResource( 9 )
-frame = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 0, 29 )
-shape = SubResource( 10 )
-
-[node name="RightHand" type="StaticBody2D" parent="Player"]
-position = Vector2( 96, 82 )
-collision_layer = 2
-collision_mask = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player/RightHand"]
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RightHand"]
-shape = SubResource( 11 )
-
-[node name="LeftHand" type="StaticBody2D" parent="Player"]
-position = Vector2( -96, 82 )
-collision_layer = 2
-collision_mask = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player/LeftHand"]
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/LeftHand"]
-shape = SubResource( 11 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+collision_layer = 1057
+collision_mask = 33
 
 [node name="Toaster" parent="." instance=ExtResource( 5 )]
-
-[node name="Toaster2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 637.148, 115.986 )
-
-[node name="Toaster3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 4.065, -191.828 )
-
-[node name="Toaster4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 64.3586, 69.9728 )
-
-[node name="Toaster5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 495.934, -112.495 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -177,13 +60,13 @@ __meta__ = {
 }
 
 [node name="AnimTrash" type="AnimatedSprite" parent="Trash"]
-frames = SubResource( 12 )
+frames = SubResource( 1 )
 animation = "trash_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trash"]
 position = Vector2( -10, 9 )
 scale = Vector2( 8, 11 )
-shape = SubResource( 13 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="Trash"]
 position = Vector2( -10, 9 )
@@ -192,11 +75,18 @@ collision_layer = 1024
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trash/Area2D"]
-shape = SubResource( 14 )
+shape = SubResource( 3 )
 
 [node name="SndTrash" type="AudioStreamPlayer2D" parent="Trash"]
 visible = false
 stream = ExtResource( 6 )
+
+[node name="Spawner" parent="Trash" instance=ExtResource( 3 )]
+
+[node name="BG_Mask_TL" type="Sprite" parent="Trash"]
+position = Vector2( -69.0094, -1107.78 )
+scale = Vector2( 1.33333, 1.33333 )
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Trash"]
 
